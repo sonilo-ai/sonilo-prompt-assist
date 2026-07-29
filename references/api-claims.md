@@ -32,6 +32,10 @@ Every numeric limit and behavior claim used by the skills in this repo, verified
 - [x] Output = **audio files only** (not stems-in-DAW-sense, not video). v2m: m4a default, `output_format=wav` optional (async-only on REST; always on MCP); preserve_speech adds vocals track + mux; ducking adds ducked music URLs. v2sfx: single file, aac default, wav/mp3/flac optional. Video out = separate `/v1/video-to-video-*` endpoints + corresponding MCP tools.
 - [x] Multi-track input — default ffmpeg stream selection (typically first audio track) for ducking/speech. Wording: "for multi-track videos, the default audio track is used."
 
+## Empirical test (2026-07-29)
+
+- 240 s synthetic video → `POST https://api.sonilo.com/v1/video-to-sfx` → **422** `{"code":"unprocessable_entity","message":"Video duration 240.0s exceeds the 180s video-to-sfx maximum"}`. Instant, no task created, no charge. Confirms the API **rejects** (does not truncate) over-cap SFX input. Consumer-app behavior for over-cap uploads remains unverified.
+
 ## Live spec observations (sonilo.com/openapi.json, 2026-07-29)
 
 - Public endpoints: `/v1/text-to-music` · `/v1/video-to-music` · `/v1/audio-ducking` · `/v1/text-to-sfx` · `/v1/video-to-sfx` · `/v1/tasks/{task_id}` — **no combined music+SFX endpoint, no video-out endpoints in the public spec**. One-call "music + SFX, one finished track" is a product-app feature, not a public API call; on the API you run v2m and v2sfx separately and mix (`/v1/audio-ducking` helps).
