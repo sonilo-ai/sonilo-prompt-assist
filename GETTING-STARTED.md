@@ -63,10 +63,19 @@ Put a short video somewhere easy, like your Desktop, then ask:
 
 > Make background music for ~/Desktop/my-video.mp4
 
-That's enough — the video is the context. Want more control? Add a sentence:
+Or sound effects:
+
+> Add sound effects to ~/Desktop/my-video.mp4
+
+That's enough — the video is the context. Sonilo watches the footage and
+places each sound on the action it belongs to. Want more control? Add a
+sentence:
 
 > Make background music for ~/Desktop/my-video.mp4 — upbeat product-demo
 > energy, no vocals.
+
+> Add sound effects to ~/Desktop/my-video.mp4 — it's a mountain-bike trail
+> run: dirt, gravel, suspension. No crowd noise.
 
 The agent sends your video to Sonilo, confirms before spending credits, and
 saves the finished audio next to your video.
