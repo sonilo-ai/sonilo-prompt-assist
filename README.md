@@ -16,6 +16,11 @@ your agent to write that brief.
 
 ## Install
 
+**New to API keys, terminals, or MCP?** Follow the step-by-step
+[Getting Started guide](GETTING-STARTED.md) — it assumes zero experience and
+walks through everything: getting a Sonilo API key, connecting Claude to
+Sonilo, and installing these skills.
+
 **Claude Code**
 
 ```
