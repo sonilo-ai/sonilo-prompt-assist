@@ -1,0 +1,8 @@
+{
+  "name": "sonilo",
+  "description": "Prompting skills for Sonilo's video_to_music and video_to_sfx — write a structured audio brief before generating, get better music and SFX",
+  "version": "0.1.0",
+  "author": {
+    "name": "Sonilo"
+  }
+}

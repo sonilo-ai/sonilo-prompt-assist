@@ -1,0 +1,17 @@
+{
+  "name": "sonilo-skills",
+  "owner": {
+    "name": "Sonilo",
+    "url": "https://github.com/sonilo-ai"
+  },
+  "description": "Prompting skills for Sonilo — structured audio briefs that make video_to_music and video_to_sfx generations dramatically better",
+  "plugins": [
+    {
+      "name": "sonilo",
+      "source": "./plugins/sonilo",
+      "description": "Audio-brief prompting for Sonilo's video_to_music and video_to_sfx (API + MCP): endpoint routing, style prompts, time-segmented SFX maps",
+      "category": "media",
+      "keywords": ["sonilo", "video-to-music", "sfx", "audio", "prompting"]
+    }
+  ]
+}
