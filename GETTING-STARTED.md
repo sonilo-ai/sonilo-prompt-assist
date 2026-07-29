@@ -128,13 +128,13 @@ Press Enter. Done. Skip to Part 4.
 Two commands, typed inside a Claude Code session:
 
 ```
-/plugin marketplace add sonilo-ai/sonilo-skills
+/plugin marketplace add sonilo-ai/sonilo-prompt-assist
 ```
 
 then:
 
 ```
-/plugin install sonilo@sonilo-skills
+/plugin install sonilo@sonilo-prompt-assist
 ```
 
 When it asks for a scope, pick **user** (that means "for me, in every
