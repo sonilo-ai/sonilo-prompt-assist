@@ -48,10 +48,25 @@ mid-phrase, no melody hooks, no vocals."
 
 **Timing honesty.** Alignment of transitions and drops to cut points is
 best-effort model behavior, not a guarantee — the backend has no alignment
-logic. Use relative structural language ("peak near the final landing"),
-never promise frame-exact sync, and don't write timestamp syntax expecting
-enforcement. Output length targets the video's duration but is not
-contract-trimmed to it.
+logic. Use relative structural language, never promise frame-exact sync, and
+don't write timestamp syntax expecting enforcement. Output length targets
+the video's duration but is not contract-trimmed to it.
+
+Worked example of section-shaped language that parses well — anchor moments
+to *what happens on screen*, with rough time zones:
+
+```
+Good:  "a drop to near-silence around 12s, then the biggest beat drop of
+        the track when the web line strikes the play button, triumphant
+        from the landing onward"
+Bad:   "drop exactly at 12.5s"
+```
+
+Where do those anchors come from? Cut timestamps fall out of scene
+detection, but a hero moment *inside* a continuous shot (the strike, the
+landing) has no cut to find it — step frames around the beat
+(`ffmpeg -ss 10 -i in.mp4 -vf fps=10 -t 4 f_%03d.png`) and read the second
+off the frames before writing "around 12s".
 
 ## Segmented music (different sections)
 
@@ -73,6 +88,9 @@ Two routes when the piece needs distinct sections (calm intro → driving second
 - **Ducking is ON by default in async mode**, independent of
   `preserve_speech`; disable with `ducking=false`. Best-effort — a video with
   no audio track silently gets no ducking.
+- Because ducking defaults on, runs on speechless footage can still return
+  ducked copies alongside the main track. When there's no speech, the ducked
+  files are safe to discard — the plain music track is "the real one".
 - Mix levels are computed server-side from loudness measurement; nothing in
   the prompt changes levels. Don't write "quiet" or "louder drums" —
   restate the *role* instead ("background bed", "drums carry the track").
@@ -83,6 +101,27 @@ Two routes when the piece needs distinct sections (calm intro → driving second
 verify by listening (or stem-split as a diagnostic). If an excluded element
 keeps returning, strengthen the positive description of what you want instead
 of stacking more negatives.
+
+## Variants as creative directions
+
+`variants_num=3` is not three rerolls of one idea — treat it as three *named
+creative directions* (e.g. "orchestral-cinematic", "electronic-kinetic",
+"minimal-percussive"), each described in its own sentence of the prompt run.
+Then review them in context, not in a file browser: mux each variant onto the
+draft cut —
+
+```
+ffmpeg -i draft.mp4 -i variant1.m4a -map 0:v -map 1:a -c:v copy -shortest v1.mp4
+```
+
+— and watch all three as finished videos. Music judged against picture reads
+completely differently from music judged alone.
+
+After the pick, **lane-lock the follow-up**: "variations on that one theme,
+not different genres." Otherwise the next round re-explores the whole space
+and you pay for directions you already rejected. (Cost note: `variants_num`
+multiplies the charge linearly — three directions = 3× one run, and still
+usually cheaper than three sequential guess-and-regenerate rounds.)
 
 ## Iterating
 
