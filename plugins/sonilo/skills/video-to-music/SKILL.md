@@ -10,16 +10,44 @@ targets the video's length. What it cannot know is your intent: genre, the
 moment that matters, the sounds that must not appear. The prompt supplies
 intent; keep timing expectations honest (see below).
 
+**The core principle (validated in production testing): quality tracks
+consistency, not eloquence.** Output quality depends less on how well the prompt is written
+than on whether the prompt and the video share the same semantics and
+structure — same subject, same rhythm, same emphasized moments. A broad,
+beautiful music description written from thin air loses to a plain brief
+that mirrors what's actually on screen.
+
 ## The music brief
 
-Four lines before writing the prompt:
+Five lines before writing the prompt:
 
 | Field | What to write | Example (10 s MTB clip) |
 |---|---|---|
 | **Style & register** | Genre + what the piece is commercially (if it has a commercial register — skip for personal/editorial footage) | Kinetic action-sports score; product launch film |
 | **Energy arc** | Shape over time, in relative terms | builds through the first half, peaks at the landing |
+| **Hero moment** | The 1–2 on-screen beats the music must acknowledge | the drop landing at ~8s |
 | **Instrumentation** | Texture and what carries it | live drums, distorted bass, no synths |
 | **Exclusions** | What must NOT appear | no vocals, no EDM drop |
+
+## AI-generated footage: reverse-derive the brief
+
+The strongest source for a consistent brief is the prompt that generated the
+video — it already encodes duration, style, beat-by-beat action, and the
+moments the creator cared about. Don't discard it; re-extract from it:
+
+| From the video-gen prompt | → brief field |
+|---|---|
+| Stated/actual length | Duration (verify with ffprobe — renders drift) |
+| Visual style + commercial type | Style & register |
+| Time-segmented action beats | Energy arc / section-shaped language |
+| Emphasized shots | Hero moment |
+| Mood words, materials, textures | Instrumentation & mood |
+| What the creator avoided | Exclusions |
+
+This reverse-derivation beats writing a music description from scratch — it
+inherits the video's structure for free. One guardrail: the rendered pixels
+still outrank the prompt. Where the render deviates from what was asked,
+brief against what's on screen (see the `sonilo-prompting` pre-flight).
 
 ## Writing the prompt
 

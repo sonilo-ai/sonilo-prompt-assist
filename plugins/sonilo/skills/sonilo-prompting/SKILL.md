@@ -6,8 +6,10 @@ description: Pre-flight for Sonilo audio generation (video_to_music / video_to_s
 # Sonilo Prompting — router
 
 A structured brief before generating is the highest-leverage step for output
-quality. This skill is the pre-flight; the actual prompt craft lives in
-`video-to-music` and `video-to-sfx`.
+quality — and what makes a brief work is **consistency with the video**:
+same subject, same structure, same emphasized moments. This skill is the
+pre-flight; the actual prompt craft lives in `video-to-music` and
+`video-to-sfx`.
 
 ## Step 1 — Inspect the video
 
