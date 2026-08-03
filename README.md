@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> **This repo is deprecated — the skills moved into [sonilo-ai/skills](https://github.com/sonilo-ai/skills)**, the canonical Sonilo agent-skills repo, folded into the `music` and `sound-effects` skills (`music/prompting.md`, `sound-effects/prompting.md`, `references/preflight.md`). Install with `npx skills add sonilo-ai/skills`.
+
 # Sonilo Licensed Video-to-Music/SFX Prompt Assist
 
 [Sonilo](https://sonilo.com) turns video into licensed music and sound
