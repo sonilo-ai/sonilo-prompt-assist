@@ -1,4 +1,4 @@
-# Sonilo Video-to-Music/SFX Prompt Assist
+# Sonilo Licensed Video-to-Music/SFX Prompt Assist
 
 [Sonilo](https://sonilo.com) turns video into licensed music and sound
 effects (`video_to_music`, `video_to_sfx` — REST API or MCP). **Your video is
